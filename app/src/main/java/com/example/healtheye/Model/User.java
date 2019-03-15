@@ -10,23 +10,31 @@ public class User {
     @PrimaryKey
     @NonNull
     private String Email;
-
-    private String Name;
-
     @NonNull
     private String Password;
+    private String Name;
 
-    public User(String uEmail, String uName, String uPassword) {
+    public String getName() {
+        return Name;
+    }
+    @NonNull
+    public String getEmail() {
+        return Email;
+    }
+    @NonNull
+    public String getPassword() {
+        return Password;
+    }
+
+
+
+    public User(@NonNull String uEmail, String uName, @NonNull String uPassword) {
         this.Email = uEmail;
         this.Name = uName;
         this.Password = uPassword;
     }
 
-    public String getEmail() {
-        return Email;
-    }
 
-    public String getUserName() {
-        return Name;
-    }
+
+
 }
