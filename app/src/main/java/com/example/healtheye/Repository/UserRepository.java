@@ -8,12 +8,11 @@ import com.example.healtheye.ROOMDatabase.UserDatabase;
 
 public class UserRepository {
     private UserDao userDao;
-    private String passwordGot;
+    private static String passwordGot;
 
     public UserRepository(Application application){
         UserDatabase database = UserDatabase.getInstance(application);
         userDao = database.userDao();
-        passwordGot = userDao.get_password("test1@nyu.edu"); //have to figure out how and where to pass in the input email
     }
 
     public void insert(User user){
@@ -27,9 +26,16 @@ public class UserRepository {
     public void delete(User user){
         new DeleteUserAsyncTask(userDao).execute(user);
     }
+
     public String get_Password(String inputEmail){
+
+        new getPasswordAsyncTask(userDao).execute(inputEmail);
         return passwordGot;
+
     }
+
+
+
     private static class InsertUserAsyncTask extends AsyncTask<User, Void,Void> {
         private UserDao userDao;
 
@@ -69,4 +75,17 @@ public class UserRepository {
         }
     }
 
+    private static class getPasswordAsyncTask extends AsyncTask<String, String, String> {
+        private UserDao userDao;
+
+        private getPasswordAsyncTask(UserDao userDao){
+            this.userDao = userDao;
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            String input = params[0];
+            return passwordGot = userDao.get_password(input);
+
+        }
+    }
 }

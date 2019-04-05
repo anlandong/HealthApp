@@ -21,6 +21,6 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT Password FROM user_table WHERE Email == :inputEmail")
-    public String get_password(String inputEmail);
+    String get_password(String inputEmail);
 
 }

@@ -10,11 +10,9 @@ import androidx.lifecycle.AndroidViewModel;
 
 public class AccountViewModel extends AndroidViewModel {
     private UserRepository repository;
-    private String passwordGot;
     public AccountViewModel(@NonNull Application application) {
         super(application);
         repository = new UserRepository(application);
-        passwordGot = repository.get_Password("test1@nyu.edu");
 
     }
 
