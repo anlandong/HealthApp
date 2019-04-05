@@ -14,25 +14,26 @@ public class User {
     private String Password;
     private String Name;
 
+    public User(@NonNull String Email, String Name, @NonNull String Password) {
+        this.Email = Email;
+        this.Name = Name;
+        this.Password = Password;
+    }
+
     public String getName() {
         return Name;
     }
-    @NonNull
     public String getEmail() {
         return Email;
     }
-    @NonNull
     public String getPassword() {
         return Password;
     }
 
 
 
-    public User(@NonNull String uEmail, String uName, @NonNull String uPassword) {
-        this.Email = uEmail;
-        this.Name = uName;
-        this.Password = uPassword;
-    }
+
+
 
 
 

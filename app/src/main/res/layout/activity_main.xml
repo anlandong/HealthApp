@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
-    tools:context=".MainActivity">
+    tools:context=".View.MainActivity">
 
     <TextView
         android:id="@+id/text_view_HealthEye"
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/frag_login"
-        android:name="com.example.healtheye.loginFragment"
+        android:name="com.example.healtheye.View.loginFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
