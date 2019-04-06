@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
+import android.widget.Toast;
+import android.util.Log;
 
 public class loginFragment extends Fragment {
 
@@ -22,7 +24,7 @@ public class loginFragment extends Fragment {
     private Button loginButton;
     private Button registerButton;
     private Button forgotButton;
-    public static final int Login_Request = 1;
+    //public static final int Login_Request = 1;
 
     public static loginFragment newInstance() {
         return new loginFragment();
@@ -31,7 +33,13 @@ public class loginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_fragment, container, false);
+        View v = inflater.inflate(R.layout.login_fragment, container, false);
+        editEmail = v.findViewById(R.id.edit_text_email);
+        editPassword = v.findViewById(R.id.edit_text_password);
+        loginButton = v.findViewById(R.id.login_button);
+        forgotButton = v.findViewById(R.id.forgotpw_button);
+        registerButton = v.findViewById(R.id.register_button);
+        return v;
 
 
     }
@@ -40,19 +48,28 @@ public class loginFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
-        editEmail = getView().findViewById(R.id.edit_text_email);
-        editPassword = getView().findViewById(R.id.edit_text_password);
-        loginButton = getView().findViewById(R.id.login_button);
-        forgotButton = getView().findViewById(R.id.forgotpw_button);
         final String passwordGot = mViewModel.get_password(editEmail.getText().toString());
+        //final String editpasswordLOG = editPassword.getText().toString();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editPassword.toString() == passwordGot) {
+                if (editPassword.getText().toString() == passwordGot) {
                     Intent intent = new Intent(getContext(), UserMainActivity.class);
                     startActivity(intent);
                 }
+                else{
+                    Toast.makeText(getContext(), passwordGot + "Incorrect", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), registrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

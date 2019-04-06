@@ -2,6 +2,7 @@ package com.example.healtheye.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.healtheye.Model.User;
 import com.example.healtheye.ROOMDatabase.UserDatabase;
@@ -28,8 +29,8 @@ public class UserRepository {
     }
 
     public String get_Password(String inputEmail){
-
-        new getPasswordAsyncTask(userDao).execute(inputEmail);
+        passwordGot = userDao.get_password(inputEmail);
+        //new getPasswordAsyncTask(userDao).execute(inputEmail);
         return passwordGot;
 
     }
@@ -84,6 +85,7 @@ public class UserRepository {
         @Override
         protected String doInBackground(String... params) {
             String input = params[0];
+            Log.d(passwordGot,"pswGotInURepo");
             return passwordGot = userDao.get_password(input);
 
         }
