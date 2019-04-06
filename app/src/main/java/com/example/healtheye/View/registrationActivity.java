@@ -37,7 +37,8 @@ public class registrationActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(registrationActivity.this, MainActivity.class);
+                Intent intent = new Intent(registrationActivity.this,
+                        MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -46,9 +47,11 @@ public class registrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 User newUser = new
-                        User(editEmail.getText().toString(), editName.getText().toString(), editPassword.getText().toString());
+                        User(editEmail.getText().toString(), editName.getText().toString(),
+                        editPassword.getText().toString());
                 accountViewModel.insert(newUser);
-                Toast.makeText(registrationActivity.this, "Account Created!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(registrationActivity.this, "Account Created!",
+                        Toast.LENGTH_SHORT).show();
 
 
             }

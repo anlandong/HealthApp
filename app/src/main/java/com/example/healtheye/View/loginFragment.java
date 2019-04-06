@@ -23,7 +23,7 @@ public class loginFragment extends Fragment {
     private EditText editPassword;
     private Button loginButton;
     private Button registerButton;
-    private Button forgotButton;
+    private Button forgotButton; //ToDO: Implement A Forgot Password Activity (Priority 3)
     //public static final int Login_Request = 1;
 
     public static loginFragment newInstance() {
@@ -49,10 +49,10 @@ public class loginFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
         final String passwordGot = mViewModel.get_password(editEmail.getText().toString());
-        //final String editpasswordLOG = editPassword.getText().toString();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(editEmail.getText().toString(),"Email Entered");
                 if (editPassword.getText().toString() == passwordGot) {
                     Intent intent = new Intent(getContext(), UserMainActivity.class);
                     startActivity(intent);

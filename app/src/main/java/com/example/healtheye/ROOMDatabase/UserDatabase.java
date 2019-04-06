@@ -25,7 +25,7 @@ public abstract class UserDatabase extends RoomDatabase {
                     UserDatabase.class, "user_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback).allowMainThreadQueries()
-                    .build();
+                    .build();//TODO: Do not Allow MainThreadQueries in production version!
         }
         return instance;
 
