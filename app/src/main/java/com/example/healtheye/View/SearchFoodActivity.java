@@ -2,6 +2,7 @@ package com.example.healtheye.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,19 +14,24 @@ import com.example.healtheye.R;
 import com.example.healtheye.Repository.USDAFoodSearchApi;
 
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class SearchFoodActivity extends AppCompatActivity {
     private static SearchView searchView;
-    private TextView queryStatus;
+    private Toolbar toolbar;
     private String searchName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_search_food);
-        searchView = findViewById(R.id.searchFoodView);
+        toolbar = findViewById(R.id.toolbar_searchFood);
+        setSupportActionBar(toolbar);
+        searchView = findViewById(R.id.searchView_food);
         searchName = searchView.getQuery().toString();
         searchView.setQueryHint("Enter Food");
         searchView.onActionViewExpanded();
@@ -42,7 +48,8 @@ public class SearchFoodActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<FoodSearch>> call, Response<List<FoodSearch>> response) {
                 if (! response.isSuccessful()){
-                    queryStatus.setText("Code" + response.code());
+                    Toast.makeText(SearchFoodActivity.this, "Code" + response.code(),
+                            Toast.LENGTH_SHORT).show();
                 }
 
                 List<FoodSearch> searchResult= response.body();
@@ -51,7 +58,8 @@ public class SearchFoodActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<FoodSearch>> call, Throwable t) {
-                queryStatus.setText(t.getMessage());
+                Toast.makeText(SearchFoodActivity.this, t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
