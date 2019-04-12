@@ -10,15 +10,17 @@ import android.widget.Button;
 
 import com.example.healtheye.R;
 import com.example.healtheye.ViewModel.AccountViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private AccountViewModel accountViewModel;
-    private Button searchButton;
+    private FloatingActionButton searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //accountViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
         searchButton = findViewById(R.id.button_searchFoodMain);
         searchButton.setOnClickListener(new View.OnClickListener(){

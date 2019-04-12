@@ -23,7 +23,7 @@ public class loginFragment extends Fragment {
     private EditText editPassword;
     private Button loginButton;
     private Button registerButton;
-    private Button forgotButton; //ToDO: Implement A Forgot Password Activity (Priority 3)
+    private Button forgotButton; //ToDO: Implement A Forgot Password Activity
     //public static final int Login_Request = 1;
 
     public static loginFragment newInstance() {

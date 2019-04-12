@@ -40,6 +40,11 @@ public class searchFoodRecycAdapter extends RecyclerView.Adapter<searchFoodRecyc
         return foodSearchList.size();
     }
 
+    public void setFoodSearchList(List<FoodSearch> searchResult){
+        this.foodSearchList = searchResult;
+        notifyDataSetChanged();
+
+    }
     class FoodItemHolder extends RecyclerView.ViewHolder{
         private TextView textViewFoodName;
         private TextView textViewBrand;
