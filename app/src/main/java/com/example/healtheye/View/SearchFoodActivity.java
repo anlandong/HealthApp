@@ -17,20 +17,21 @@ import com.example.healtheye.Repository.USDAFoodSearchApi;
 import com.example.healtheye.View.Adapters.searchFoodRecycAdapter;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class SearchFoodActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
     private static SearchView searchView;
     private Toolbar toolbar;
-    private String searchName;
     private String my_api_key = "f5lCyD2qbPcqB5qAtJWrD3ThpoFNKrRnRTRcAViO";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Tag","OnCreate");
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_search_food);
@@ -45,44 +46,65 @@ public class SearchFoodActivity extends AppCompatActivity {
                 startActivity(backIntent);
             }
         });
-        //setup searchView
-        searchView = findViewById(R.id.searchView_food);
-        searchName = searchView.getQuery().toString();
-        searchView.setQueryHint("Enter Food");
-        searchView.onActionViewExpanded();
-        searchView.setIconified(true);
-        //Setup RecyclerView + Adapter
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_foodsearch);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        final searchFoodRecycAdapter searchFoodRecycAdapter = new searchFoodRecycAdapter();
-        recyclerView.setAdapter(searchFoodRecycAdapter);
-
         //Setup Retrofit2
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl("https://api.nal.usda.gov/ndb/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        USDAFoodSearchApi usdaFoodSearchApi = retrofit.create(USDAFoodSearchApi.class);
-
-        Call<List<FoodSearch>> searchFood = usdaFoodSearchApi.getFood(searchName, my_api_key);
-        searchFood.enqueue(new Callback<List<FoodSearch>>() {
+        final USDAFoodSearchApi usdaFoodSearchApi = retrofit.create(USDAFoodSearchApi.class);
+        //setup searchView
+        searchView = findViewById(R.id.searchView_food);
+        searchView.setQueryHint("Enter Food");
+        searchView.onActionViewExpanded();
+        searchView.setIconified(true);
+        //Setup RecyclerView + Adapter
+        recyclerView = findViewById(R.id.recyclerView_foodsearch);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        //Setup searchView textChangeListener:
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onResponse(Call<List<FoodSearch>> call, Response<List<FoodSearch>> response) {
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("TextSubmit", "Text Submitted");
+                fetchFood(usdaFoodSearchApi, query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("TextChanged", "Text Changed");
+                fetchFood(usdaFoodSearchApi, newText);
+                return false;
+            }
+        });
+    }
+
+    public void fetchFood(USDAFoodSearchApi api, final String queryFoodName){
+        Call<FoodSearch> searchFood = api.getFood(queryFoodName, my_api_key);
+        searchFood.enqueue(new Callback<FoodSearch>() {
+            @Override
+            public void onResponse(Call<FoodSearch> call, Response<FoodSearch> response) {
                 if (! response.isSuccessful()){
                     Toast.makeText(SearchFoodActivity.this, "Code" + response.code(),
                             Toast.LENGTH_SHORT).show();
                 }
 
-                List<FoodSearch> searchResult= response.body();
+                FoodSearch searchResult= response.body();
+                searchFoodRecycAdapter adapter =
+                        new searchFoodRecycAdapter(searchResult, SearchFoodActivity.this);
+                if (null != adapter){
+                    Log.d("adapter", "adapter setting");
+                    recyclerView.setAdapter(adapter);
+                }
+                Log.d("TAG", "FoodSearch is successful");
+                Log.d("SearchCritera", "Search Name is:" + queryFoodName);
                 //ToDo:food found. display to RecyclerView.
-                searchFoodRecycAdapter.setFoodSearchList(searchResult);
-
+                adapter.setFoodSearch(searchResult);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<FoodSearch>> call, Throwable t) {
+            public void onFailure(Call<FoodSearch> call, Throwable t) {
                 Toast.makeText(SearchFoodActivity.this, t.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }

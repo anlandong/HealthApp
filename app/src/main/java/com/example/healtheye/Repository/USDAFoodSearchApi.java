@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 public interface USDAFoodSearchApi {
     String my_api_key = "f5lCyD2qbPcqB5qAtJWrD3ThpoFNKrRnRTRcAViO";
     @GET("search")
-    Call<List<FoodSearch>> getFood(@Query("q") String foodName,
+    Call<FoodSearch> getFood(@Query("q") String foodName,
                                     @Query("api_key") String my_api_key);
 
 
