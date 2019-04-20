@@ -50,8 +50,10 @@ public class registrationActivity extends AppCompatActivity {
                         User(editEmail.getText().toString(), editName.getText().toString(),
                         editPassword.getText().toString());
                 accountViewModel.insert(newUser);
+                Intent backToMain = new Intent(registrationActivity.this, MainActivity.class);
                 Toast.makeText(registrationActivity.this, "Account Created!",
                         Toast.LENGTH_SHORT).show();
+                startActivity(backToMain);
 
 
             }

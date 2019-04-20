@@ -5,6 +5,8 @@
 
     <dist:module dist:instant="true" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.SearchFoodActivity"></activity>
+        <activity
+            android:name=".View.displayFoodActivity"
+            android:label="@string/title_activity_display_food"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".View.SearchFoodActivity" />
         <activity android:name=".View.registrationActivity" />
         <activity
             android:name=".View.UserMainActivity"
@@ -25,5 +31,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>
