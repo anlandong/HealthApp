@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="550dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".View.MainActivity">
+
+
+    <TextView
+        android:id="@+id/text_total_nutrition_consumed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Total Nutrition Consumed:"
+        android:textColor="#009688"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/text_welcome"
+        app:layout_constraintTop_toBottomOf="@+id/text_age" />
+
+    <TextView
+        android:id="@+id/text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="User Name?"
+        app:layout_constraintBottom_toBottomOf="@+id/text_welcome"
+        app:layout_constraintStart_toEndOf="@+id/text_welcome" />
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="170dp"
+        android:text="Welcome! "
+        android:textColor="#2196F3"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Information:"
+        android:textColor="#009688"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/text_welcome"
+        app:layout_constraintTop_toBottomOf="@+id/text_welcome" />
+
+    <TextView
+        android:id="@+id/text_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Height (cm)"
+        app:layout_constraintStart_toStartOf="@+id/text_information"
+        app:layout_constraintTop_toBottomOf="@+id/text_information" />
+
+    <TextView
+        android:id="@+id/text_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Weight (lb)"
+        app:layout_constraintStart_toStartOf="@+id/text_height"
+        app:layout_constraintTop_toBottomOf="@+id/text_height" />
+
+    <TextView
+        android:id="@+id/double_user_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="User Height?"
+        app:layout_constraintStart_toStartOf="@+id/text_height"
+        app:layout_constraintTop_toTopOf="@+id/text_height" />
+
+    <TextView
+        android:id="@+id/double_user_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="User Weight?"
+        app:layout_constraintStart_toStartOf="@+id/text_weight"
+        app:layout_constraintTop_toTopOf="@+id/text_weight" />
+
+    <TextView
+        android:id="@+id/text_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Age (yr)"
+        app:layout_constraintStart_toStartOf="@+id/text_weight"
+        app:layout_constraintTop_toBottomOf="@+id/text_weight" />
+
+    <TextView
+        android:id="@+id/int_user_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="User Age?"
+        app:layout_constraintStart_toStartOf="@+id/text_age"
+        app:layout_constraintTop_toTopOf="@+id/text_age" />
+
+    <TextView
+        android:id="@+id/text_energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Energy (kcal)"
+        app:layout_constraintStart_toStartOf="@+id/text_total_nutrition_consumed"
+        app:layout_constraintTop_toBottomOf="@+id/text_total_nutrition_consumed" />
+
+    <TextView
+        android:id="@+id/text_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Protein (g)"
+        app:layout_constraintStart_toStartOf="@+id/text_energy"
+        app:layout_constraintTop_toBottomOf="@+id/text_energy" />
+
+    <TextView
+        android:id="@+id/text_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Fat (g)"
+        app:layout_constraintStart_toStartOf="@+id/text_protein"
+        app:layout_constraintTop_toBottomOf="@+id/text_protein" />
+
+    <TextView
+        android:id="@+id/text_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Sugar (g)"
+        app:layout_constraintStart_toStartOf="@+id/text_fat"
+        app:layout_constraintTop_toBottomOf="@+id/text_fat" />
+
+    <TextView
+        android:id="@+id/text_fiber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Fiber (g)"
+        app:layout_constraintStart_toStartOf="@+id/text_sugar"
+        app:layout_constraintTop_toBottomOf="@+id/text_sugar" />
+
+    <TextView
+        android:id="@+id/double_total_energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Total Energy?"
+        app:layout_constraintStart_toStartOf="@+id/text_energy"
+        app:layout_constraintTop_toTopOf="@+id/text_energy" />
+
+    <TextView
+        android:id="@+id/double_total_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Total Protein?"
+        app:layout_constraintStart_toStartOf="@+id/text_protein"
+        app:layout_constraintTop_toTopOf="@+id/text_protein" />
+
+    <TextView
+        android:id="@+id/double_total_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Total Sugar?"
+        app:layout_constraintStart_toStartOf="@+id/text_sugar"
+        app:layout_constraintTop_toTopOf="@+id/text_sugar" />
+
+    <TextView
+        android:id="@+id/double_total_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Total Fat?"
+        app:layout_constraintStart_toStartOf="@+id/text_fat"
+        app:layout_constraintTop_toTopOf="@+id/text_fat" />
+
+    <TextView
+        android:id="@+id/double_total_fiber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Total Fiber?"
+        app:layout_constraintStart_toStartOf="@+id/text_fiber"
+        app:layout_constraintTop_toTopOf="@+id/text_fiber" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
