@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.healtheye.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
@@ -14,25 +14,27 @@ import android.widget.TextView;
 
 public class UserMainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    selectedFragment = new homeFragment();
+                    break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    selectedFragment = new dashboardFragment();
+                    break;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    selectedFragment = new notificationFragment();
+                    break;
             }
-            return false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.frag_h_d_n,selectedFragment).commit();
+            return true;
         }
     };
 
@@ -41,7 +43,6 @@ public class UserMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
