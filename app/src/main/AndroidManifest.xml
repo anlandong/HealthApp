@@ -4,6 +4,10 @@
     package="com.example.healtheye">
 
     <dist:module dist:instant="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/myAppTheme">
         <activity android:name=".View.SearchFoodActivity"></activity>
         <activity android:name=".View.registrationActivity" />
         <activity
@@ -24,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".liteClassifier.ClassifierActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
