@@ -13,11 +13,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.example.healtheye.Model.FoodSearch;
 import com.example.healtheye.R;
-import com.example.healtheye.Repository.USDAFoodSearchApi;
+import com.example.healtheye.Repository.USDAFoodAPI;
 import com.example.healtheye.View.Adapters.searchFoodRecycAdapter;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +50,7 @@ public class SearchFoodActivity extends AppCompatActivity {
                 baseUrl("https://api.nal.usda.gov/ndb/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        final USDAFoodSearchApi usdaFoodSearchApi = retrofit.create(USDAFoodSearchApi.class);
+        final USDAFoodAPI usdaFoodSearchApi = retrofit.create(USDAFoodAPI.class);
         //setup searchView
         searchView = findViewById(R.id.searchView_food);
         searchView.setQueryHint("Enter Food");
@@ -79,7 +78,7 @@ public class SearchFoodActivity extends AppCompatActivity {
         });
     }
 
-    public void fetchFood(USDAFoodSearchApi api, final String queryFoodName){
+    public void fetchFood(USDAFoodAPI api, final String queryFoodName){
         Call<FoodSearch> searchFood = api.getFood(queryFoodName, my_api_key);
         searchFood.enqueue(new Callback<FoodSearch>() {
             @Override
@@ -91,7 +90,18 @@ public class SearchFoodActivity extends AppCompatActivity {
 
                 FoodSearch searchResult= response.body();
                 searchFoodRecycAdapter adapter =
-                        new searchFoodRecycAdapter(searchResult, SearchFoodActivity.this);
+                        new searchFoodRecycAdapter(searchResult, SearchFoodActivity.this,
+                                new searchFoodRecycAdapter.onItemClickListener() {
+                                    @Override
+                                    public void onItemClick(FoodSearch.ListBean.ItemBean item) {
+                                        Log.d("Listener","Search Result Item clicked");
+                                        Intent displayFoodIntent = new Intent(
+                                                SearchFoodActivity.this,
+                                                displayFoodActivity.class);
+                                        displayFoodIntent.putExtra("ndb", item.getNdbno());
+                                        startActivity(displayFoodIntent);
+                                    }
+                                });
                 if (null != adapter){
                     Log.d("adapter", "adapter setting");
                     recyclerView.setAdapter(adapter);
