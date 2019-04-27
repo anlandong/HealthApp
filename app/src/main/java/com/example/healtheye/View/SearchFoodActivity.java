@@ -11,6 +11,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import com.example.healtheye.Model.FoodReport;
 import com.example.healtheye.Model.FoodSearch;
 import com.example.healtheye.R;
 import com.example.healtheye.Repository.USDAFoodAPI;
@@ -22,6 +23,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class SearchFoodActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

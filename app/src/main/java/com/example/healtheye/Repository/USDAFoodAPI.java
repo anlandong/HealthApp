@@ -13,7 +13,7 @@ public interface USDAFoodAPI {
     @GET("search")
     Call<FoodSearch> getFood(@Query("q") String foodName,
                                     @Query("api_key") String my_api_key);
-    @GET("V2/report")
+    @GET("V2/reports")
     Call<FoodReport> getReport(@Query("ndbno") String ndb,
                                @Query("api_key") String my_api_key);
 

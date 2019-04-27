@@ -28,7 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".liteClassifier.ClassifierActivity"></activity>
+        <activity android:name=".liteClassifier.ClassifierActivity"></activity>\
+        <activity android:name=".View.displayFoodActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

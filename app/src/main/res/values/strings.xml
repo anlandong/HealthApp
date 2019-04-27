@@ -26,6 +26,7 @@
         <item>GPU</item>
         <item>NNAPI</item>
     </string-array>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -38,8 +39,12 @@
         <item name="android:textColorPrimary">@android:color/white</item>
 
     </style>
+
     <style name="CustomToolBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

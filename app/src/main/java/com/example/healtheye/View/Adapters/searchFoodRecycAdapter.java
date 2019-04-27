@@ -44,7 +44,7 @@ public class searchFoodRecycAdapter extends RecyclerView.Adapter<searchFoodRecyc
                 .inflate(R.layout.searchfood_item,parent,false);
         return new FoodItemHolder(itemView);
     }
-    //ToDo Fix the Method with newly updated Java Converter;
+
     @Override
     public void onBindViewHolder(@NonNull FoodItemHolder holder, int position) {
         holder.bind(foodItemList.get(position), listner);
