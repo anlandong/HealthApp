@@ -48,17 +48,17 @@ public class loginFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
-        final String passwordGot = mViewModel.get_password(editEmail.getText().toString());
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(editEmail.getText().toString(),"Email Entered");
-                if (editPassword.getText().toString() == passwordGot) {
+                final String passwordGot = mViewModel.get_password(editEmail.getText().toString());
+                if (editPassword.getText().toString().equals(passwordGot)) {
                     Intent intent = new Intent(getContext(), UserMainActivity.class);
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getContext(), passwordGot + "Incorrect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), passwordGot + " Incorrect", Toast.LENGTH_LONG).show();
                 }
             }
         });
