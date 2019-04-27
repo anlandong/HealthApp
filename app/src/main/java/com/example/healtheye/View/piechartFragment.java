@@ -59,7 +59,6 @@ public class piechartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setCPFPieChart();
-        //setSamplePieChart();
         textViewTop.setText("Nutrition Info for " + foodItem.getDesc().getName());
     }
     // set the pie chart for Protein Carbohydrate Fat
@@ -72,8 +71,9 @@ public class piechartFragment extends Fragment {
 
         for ( FoodReport.FoodsBean.FoodBean.NutrientsBean bean : nutritionList){
             Log.d("1st loop", "Bean name is: " + bean.getName());
-            if ( bean.getName().trim() == ("Protein") || bean.getName().trim() == ("Total lipid (fat)")
-                    ||  bean.getName().trim() == ("Carbohydrate, by difference")) {
+            if ( (bean.getName().trim().equals("Protein"))
+                || bean.getName().trim().equals("Total lipid (fat)")
+                    ||  bean.getName().trim().equals("Carbohydrate, by difference")) {
                 entryList.add(new PieEntry(Float.parseFloat(bean.getValue()), bean.getName()));
                 total += Float.parseFloat(bean.getValue());
                 Log.d("setChart", "in 1st for loop and Name is: " + bean.getName() +
@@ -81,6 +81,12 @@ public class piechartFragment extends Fragment {
             }
         }
         Log.d("setChart","CPFEntry List now has " + entryList.size());
+
+        for ( PieEntry entry : entryList){
+            entry.setY(entry.getValue()/total);
+        }
+
+
         //Prepare for dataSet
         PieDataSet dataSet = new PieDataSet(entryList, "CPF PieChart");
         dataSet.setSliceSpace(3f);
@@ -114,25 +120,5 @@ public class piechartFragment extends Fragment {
 
 
     }
-
-    public void setSamplePieChart(){
-        List<PieEntry> strings = new ArrayList<>();
-        strings.add(new PieEntry(30f,"aaa"));
-        strings.add(new PieEntry(70f,"bbb"));
-
-        PieDataSet dataSet = new PieDataSet(strings,"Label");
-
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(getResources().getColor(R.color.colorAccent));
-        colors.add(getResources().getColor(R.color.colorPrimary));
-        dataSet.setColors(colors);
-
-        PieData pieData = new PieData(dataSet);
-        pieData.setDrawValues(true);
-
-        pieChart.setData(pieData);
-        pieChart.invalidate();
-    }
-
 }
 
