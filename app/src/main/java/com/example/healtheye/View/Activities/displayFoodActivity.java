@@ -6,10 +6,12 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.healtheye.Model.Entity.Diet;
+import com.example.healtheye.Model.Entity.Profile;
 import com.example.healtheye.Model.Retrofit2Model.FoodReport;
 import com.example.healtheye.Repository.USDAFoodAPI;
 import com.example.healtheye.View.Fragments.piechartFragment;
 import com.example.healtheye.ViewModel.DietViewModel;
+import com.example.healtheye.ViewModel.ProfileViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import io.reactivex.observers.DisposableCompletableObserver;
@@ -60,12 +63,32 @@ public class displayFoodActivity extends AppCompatActivity {
     private int totalCalorie = 0;
     private TextView calorieTextView;
     private boolean isHighFat;
+    private boolean isHighBMI;
+    private ImageView warningImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getSharedPreferences("setting",MODE_PRIVATE);
         email = sp.getString("email", null);
         dietViewModel = ViewModelProviders.of(this).get(DietViewModel.class);
+        if(email != null){
+            ProfileViewModel profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+            profileViewModel.get_health(email).observe(this, new Observer<Profile>() {
+                @Override
+                public void onChanged(Profile profile) {
+                    float BMI = profile.getWeight()/(profile.getHeight()*profile.getHeight()/10000);
+                    Log.d("set warning", "BMI is: " + BMI);
+                    if (BMI > 25.0){
+                        Log.d("set warning", "BMI is: " + BMI);
+                        isHighBMI = true;
+                    }
+                    else{
+                        isHighBMI = false;
+                    }
+                }
+            });
+
+        }
         //Pass in ndb
         Intent intent = getIntent();
         ndb = intent.getStringExtra("ndb");
@@ -89,7 +112,7 @@ public class displayFoodActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.button_submit_bottonSheet_displayFood);
         quantitySlider = findViewById(R.id.fluidSlider_displayFood);
         calorieTextView = findViewById(R.id.textView_totalCalorie_bottomSheetDisplayFood);
-
+        warningImageView = findViewById(R.id.imageView_warning_displayFood);
         //BottomSheet Properties:
         ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -209,6 +232,7 @@ public class displayFoodActivity extends AppCompatActivity {
                 piechartFragment piechartFragment = new piechartFragment();
                 fragmentTransaction.add(R.id.linearLayout_CPFpiechart_displayFood, piechartFragment);
                 fragmentTransaction.commit();
+                Log.d("setWarning ", "isHighBMI is " + isHighBMI + "isHighFat is" + isHighFat );
                 Log.d("Frag Piechart", "Piechart added");
             }
 
@@ -225,8 +249,14 @@ public class displayFoodActivity extends AppCompatActivity {
         return FoodResultReport;
     }
 
-    public void setWarning(){
+    public void setWarningHighFat(){
         isHighFat = true;
+        if (isHighBMI == true && isHighFat == true){
+            warningImageView.setColorFilter(getColor(android.R.color.holo_red_light));
+        }
+    }
+    public void setWarningHighBMI(){
+        isHighBMI = true;
     }
     public void calculateTotalCalorie(){
         float quantityFloat = Float.parseFloat(quantity);

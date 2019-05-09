@@ -100,7 +100,7 @@ public class piechartFragment extends Fragment {
                 if (entry.getValue() > 0.3f){
                     Log.d("set warning", "Fat > 30");
                     displayFoodActivity mdisplayFoodActivity = (displayFoodActivity) getActivity();
-                    mdisplayFoodActivity.setWarning();
+                    mdisplayFoodActivity.setWarningHighFat();
                 }
             }
         }

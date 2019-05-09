@@ -46,6 +46,15 @@
                 android:textStyle="bold"
                 android:typeface="normal" />
 
+            <ImageView
+                android:id="@+id/imageView_warning_displayFood"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginLeft="100dp"
+                android:src="@drawable/ic_dot"
+                android:tint="@color/colorPrimary" />
+
 
         </LinearLayout>
     </LinearLayout>

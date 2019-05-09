@@ -25,13 +25,13 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="c2edd1aa-7030-4635-914e-3efbf792bab2">
-        <schema name="main" object-types="index, column, view, constraint, table, dataset trigger" />
+        <schema name="main" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c2edd1aa-7030-4635-914e-3efbf792bab2">
-      <console name="HealthEye" type="STANDARD" schema="main" session="Main"><![CDATA[select * from user_table;]]></console>
+      <console name="HealthEye" type="STANDARD" schema="main" session="Main">select * from user_table;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
