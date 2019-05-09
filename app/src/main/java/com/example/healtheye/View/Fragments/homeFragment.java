@@ -66,6 +66,8 @@ public class homeFragment extends Fragment  {
             @Override
             public void onChanged(Profile profile) {
                 setTDEE(profile);
+                TDEETextView.setText(String.format(" %d kCal", TDEE));
+                calorieLeftTextView.setText(String.format("Calorie Intake Left: %d kCal", (int) (TDEE)));
                 Log.d("TDEE", "TDEE calculated to be: " + TDEE);
             }
         });
@@ -98,7 +100,6 @@ public class homeFragment extends Fragment  {
                 else{
                     totalCalorieTextView.setText("No Diet Added");
                     circularProgressBar.setProgressWithAnimation(0);
-                    TDEETextView.setText(String.format(" %d kCal", TDEE));
                     calorieLeftTextView.setText(String.format("Calorie Intake Left: %d kCal", (int) (TDEE)));
                 }
             }

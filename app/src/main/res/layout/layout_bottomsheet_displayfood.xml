@@ -54,6 +54,13 @@
                 android:layout_marginLeft="100dp"
                 android:src="@drawable/ic_dot"
                 android:tint="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/textView_Healthy_displayFood"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:text="Okay to eat"
+                android:textColor="@color/colorPrimary"/>
 
 
         </LinearLayout>

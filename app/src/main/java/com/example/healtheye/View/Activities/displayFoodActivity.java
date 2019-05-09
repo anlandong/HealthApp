@@ -61,7 +61,7 @@ public class displayFoodActivity extends AppCompatActivity {
     private String quantity;
     private DietViewModel dietViewModel;
     private int totalCalorie = 0;
-    private TextView calorieTextView;
+    private TextView calorieTextView, warningTextView;
     private boolean isHighFat;
     private boolean isHighBMI;
     private ImageView warningImageView;
@@ -113,6 +113,7 @@ public class displayFoodActivity extends AppCompatActivity {
         quantitySlider = findViewById(R.id.fluidSlider_displayFood);
         calorieTextView = findViewById(R.id.textView_totalCalorie_bottomSheetDisplayFood);
         warningImageView = findViewById(R.id.imageView_warning_displayFood);
+        warningTextView = findViewById(R.id.textView_Healthy_displayFood);
         //BottomSheet Properties:
         ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -253,6 +254,8 @@ public class displayFoodActivity extends AppCompatActivity {
         isHighFat = true;
         if (isHighBMI == true && isHighFat == true){
             warningImageView.setColorFilter(getColor(android.R.color.holo_red_light));
+            warningTextView.setText("Avoid Eating");
+            warningTextView.setTextColor(getColor(android.R.color.holo_red_dark));
         }
     }
     public void setWarningHighBMI(){
