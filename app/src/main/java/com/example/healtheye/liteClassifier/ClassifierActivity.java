@@ -57,7 +57,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   @Override
   protected int getLayoutId() {
-    return R.layout.camera_connection_fragment;
+    return R.layout.fragment_camera_connection;
   }
 
   @Override

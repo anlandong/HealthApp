@@ -19,6 +19,7 @@ package com.example.healtheye.liteClassifier;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
@@ -38,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.healtheye.View.Activities.SearchFoodActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import android.util.Size;
@@ -46,6 +49,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -86,6 +90,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private LinearLayout bottomSheetLayout;
   private LinearLayout gestureLayout;
   private BottomSheetBehavior sheetBehavior;
+  private Button searchFoodButton;
   protected TextView recognitionTextView,
       recognition1TextView,
       recognition2TextView,
@@ -186,7 +191,7 @@ public abstract class CameraActivity extends AppCompatActivity
     recognition1ValueTextView = findViewById(R.id.detected_item1_value);
     recognition2TextView = findViewById(R.id.detected_item2);
     recognition2ValueTextView = findViewById(R.id.detected_item2_value);
-
+    searchFoodButton = findViewById(R.id.button_mannualSearch_bottonSheetCamera);
     frameValueTextView = findViewById(R.id.frame_info);
     cropValueTextView = findViewById(R.id.crop_info);
     cameraResolutionTextView = findViewById(R.id.view_info);
@@ -202,6 +207,26 @@ public abstract class CameraActivity extends AppCompatActivity
     model = Model.valueOf(modelSpinner.getSelectedItem().toString().toUpperCase());
     device = Device.valueOf(deviceSpinner.getSelectedItem().toString());
     numThreads = Integer.parseInt(threadsTextView.getText().toString().trim());
+    //Setup TextView OnClickListener
+    recognitionTextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent searchFoodIntent = new Intent(CameraActivity.this, SearchFoodActivity.class);
+        if (recognitionTextView.getText() != null){
+          searchFoodIntent.putExtra("classifierResult", recognitionTextView.getText().toString());
+          startActivity(searchFoodIntent);
+        }
+
+      }
+    });
+
+    searchFoodButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent searchFoodManualIntent = new Intent(CameraActivity.this, SearchFoodActivity.class);
+        startActivity(searchFoodManualIntent);
+      }
+    });
   }
 
   protected int[] getRgbBytes() {
@@ -524,7 +549,8 @@ public abstract class CameraActivity extends AppCompatActivity
     if (results != null && results.size() >= 3) {
       Recognition recognition = results.get(0);
       if (recognition != null) {
-        if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
+        if (recognition.getTitle() != null)
+          recognitionTextView.setText(recognition.getTitle());
         if (recognition.getConfidence() != null)
           recognitionValueTextView.setText(
               String.format("%.2f", (100 * recognition.getConfidence())) + "%");

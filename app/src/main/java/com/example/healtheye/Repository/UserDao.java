@@ -1,6 +1,6 @@
 package com.example.healtheye.Repository;
 
-import com.example.healtheye.Model.User;
+import com.example.healtheye.Model.Entity.User;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -22,5 +22,6 @@ public interface UserDao {
 
     @Query("SELECT Password FROM user_table WHERE Email == :inputEmail")
     String get_password(String inputEmail);
-
+    @Query("SELECT * FROM user_table WHERE Email == :inputEmail")
+    User getUser(String inputEmail);
 }

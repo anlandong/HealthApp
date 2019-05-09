@@ -2,7 +2,7 @@ package com.example.healtheye.ViewModel;
 
 import android.app.Application;
 
-import com.example.healtheye.Model.User;
+import com.example.healtheye.Model.Entity.User;
 import com.example.healtheye.Repository.UserRepository;
 
 import androidx.annotation.NonNull;
@@ -13,11 +13,10 @@ public class AccountViewModel extends AndroidViewModel {
     public AccountViewModel(@NonNull Application application) {
         super(application);
         repository = new UserRepository(application);
-
     }
-
     public void insert(User user){ repository.insert(user);}
     public void update(User user){ repository.update(user);}
     public void delete(User user){ repository.delete(user);}
     public String get_password(String inputEmail){ return repository.get_Password(inputEmail);}
+    public User getUser(String inputEmail){ return repository.getUser(inputEmail);}
 }

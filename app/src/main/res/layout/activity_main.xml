@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".View.MainActivity">
+    tools:context=".View.Activities.MainActivity">
 
     <TextView
         android:id="@+id/text_view_HealthEye"
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/frag_login"
-        android:name="com.example.healtheye.View.loginFragment"
+        android:name="com.example.healtheye.View.Fragments.loginFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.573"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/fragment_login" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_activityMain_SearchFood"

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Activities.updateProfileActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_updateProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/textView_title_updateProfileActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Edit Profile">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView_title_updateProfileActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:text="Update Your Profile"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/editText_weight_updateProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_updateProfile" />
+
+
+    <EditText
+        android:id="@+id/editText_weight_updateProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:hint="Enter wegiht"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editText_height_updateProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_updateProfileActivity" />
+
+    <EditText
+        android:id="@+id/editText_height_updateProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:hint="Enter Height"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_gender_updateProfileActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_weight_updateProfile" />
+
+    <EditText
+        android:id="@+id/editText_Age_updateProfile"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="26dp"
+        android:hint="Enter Age"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/button_submit_updateProfile"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_gender_updateProfileActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_height_updateProfile" />
+
+    <Spinner
+        android:id="@+id/spinner_gender_updateProfileActivity"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="27dp"
+        android:entries="@array/gender"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/button_submit_updateProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText_Age_updateProfile"
+        app:layout_constraintTop_toBottomOf="@+id/editText_height_updateProfile">
+
+    </Spinner>
+
+    <Button
+        android:id="@+id/button_submit_updateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="282dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_gender_updateProfileActivity" />
+</androidx.constraintlayout.widget.ConstraintLayout>

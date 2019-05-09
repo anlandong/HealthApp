@@ -4,10 +4,13 @@
     package="com.example.healtheye">
 
     <dist:module dist:instant="true" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,20 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/myAppTheme">
-        <activity android:name=".View.SearchFoodActivity"></activity>
-        <activity android:name=".View.registrationActivity" />
+        <activity android:name=".View.Activities.updateProfileActivity"></activity>
+        <activity android:name=".View.Activities.addProfileActivity" />
+        <activity android:name=".View.Activities.SearchFoodActivity" />
+        <activity android:name=".View.Activities.registrationActivity" />
         <activity
-            android:name=".View.UserMainActivity"
+            android:name=".View.Activities.UserMainActivity"
             android:label="@string/title_activity_user" />
-        <activity android:name=".View.MainActivity">
+        <activity android:name=".View.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".liteClassifier.ClassifierActivity"></activity>\
-        <activity android:name=".View.displayFoodActivity"></activity>
+        <activity android:name=".liteClassifier.ClassifierActivity" />
+        <activity android:name=".View.Activities.displayFoodActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

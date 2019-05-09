@@ -5,12 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.healtheye.Model.Food;
-import com.example.healtheye.Model.FoodSearch;
+import com.example.healtheye.Model.Retrofit2Model.FoodSearch;
 import com.example.healtheye.R;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class searchFoodRecycAdapter extends RecyclerView.Adapter<searchFoodRecyc
     @Override
     public FoodItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.searchfood_item,parent,false);
+                .inflate(R.layout.item_searchfood,parent,false);
         return new FoodItemHolder(itemView);
     }
 
@@ -73,13 +71,12 @@ public class searchFoodRecycAdapter extends RecyclerView.Adapter<searchFoodRecyc
     class FoodItemHolder extends RecyclerView.ViewHolder{
         private TextView textViewFoodName;
         private TextView textViewBrand;
-        private ImageView imageViewImage;
 
         public FoodItemHolder(@NonNull View itemView) {
             super(itemView);
             this.textViewFoodName = itemView.findViewById(R.id.textView_foodname);
             this.textViewBrand = itemView.findViewById(R.id.textView_Brand);
-            this.imageViewImage = itemView.findViewById(R.id.imageView_foodimage);
+
         }
 
         public void bind(final FoodSearch.ListBean.ItemBean item, final onItemClickListener listener){

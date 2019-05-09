@@ -3,14 +3,15 @@ package com.example.healtheye.Repository;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.example.healtheye.Model.User;
+import com.example.healtheye.Model.Entity.User;
 import com.example.healtheye.ROOMDatabase.UserDatabase;
 
 public class UserRepository {
     private UserDao userDao;
     private static String passwordGot;
-
+    private static User userGot;
     public UserRepository(Application application){
         UserDatabase database = UserDatabase.getInstance(application);
         userDao = database.userDao();
@@ -30,9 +31,16 @@ public class UserRepository {
 
     public String get_Password(String inputEmail){
         passwordGot = userDao.get_password(inputEmail);
+        Log.d("UserRepo", "Password Got is " + passwordGot);
         //new getPasswordAsyncTask(userDao).execute(inputEmail);
         return passwordGot;
+    }
 
+    public User getUser(String inputEmail){
+        Log.d("UserRepo", "Getting User");
+        //new getUserAsyncTask(userDao).execute(inputEmail);
+        userGot = userDao.getUser(inputEmail);
+        return userGot;
     }
 
 
@@ -76,7 +84,7 @@ public class UserRepository {
         }
     }
 
-    private static class getPasswordAsyncTask extends AsyncTask<String, String, String> {
+    private static class getPasswordAsyncTask extends AsyncTask<String, Void, String> {
         private UserDao userDao;
 
         private getPasswordAsyncTask(UserDao userDao){
@@ -85,9 +93,23 @@ public class UserRepository {
         @Override
         protected String doInBackground(String... params) {
             String input = params[0];
-            Log.d(passwordGot,"pswGotInURepo");
+            Log.d("AsnycTask","in getPasswordAsyncTask");
+            Log.d("AsyncTask","inputEmail is " + input);
             return passwordGot = userDao.get_password(input);
-
         }
     }
+    private static class getUserAsyncTask extends AsyncTask<String, Void, User> {
+        private UserDao userDao;
+
+        private getUserAsyncTask(UserDao userDao){
+            this.userDao = userDao;
+        }
+        @Override
+        protected User doInBackground(String... params) {
+            String input = params[0];
+            Log.d("AsnycTask","in getUserAsyncTask");
+            return userGot = userDao.getUser(input);
+        }
+    }
+
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context=".View.Activities.MainActivity">
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="170dp"
+        android:text="Welcome, "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_welcome"
+        app:layout_constraintStart_toEndOf="@+id/text_welcome" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1_homeFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/text_total_nutrition_consumed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Calories Consumed:"
+                android:textColor="#009688"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView_totalCalorie_homeFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXX kCal" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/divider_homeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout1_homeFragment"
+        android:background="@android:color/darker_gray">
+
+    </View>
+    <RelativeLayout
+        android:id="@+id/relativeLayout2_homeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/divider_homeFragment"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textView_calorieLeft_homeFrag"
+            android:layout_width="130dp"
+            android:layout_height="37dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="50dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:text=" Calorie Left" />
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgressBar_homeFrag"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:cpb_background_progressbar_color="#3B00796B"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_progressbar_color="#00796B"
+            app:cpb_progressbar_width="10dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout2_homeFragment"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView_TDEE_homeFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Daily Calorie Intake:"
+            android:textColor="#009688"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView_numTDEE_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XXX kCal" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

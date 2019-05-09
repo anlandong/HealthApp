@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">HealthEye</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="Custom_APIKEY">AIzaSyBrDFmddl6_NL37h7VJMM1w-tG_XnyAGXo</string>
+    <string name="USDA_APIKEY">f5lCyD2qbPcqB5qAtJWrD3ThpoFNKrRnRTRcAViO</string>
     <string name="title_home">Home</string>
+    <string name="title_add">Add Food</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="description_info">Info</string>
